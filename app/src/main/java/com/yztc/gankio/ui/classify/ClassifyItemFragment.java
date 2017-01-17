@@ -77,5 +77,11 @@ public class ClassifyItemFragment extends BaseListFragment
     @Override
     public void loadFinish() {
         loadfinish();
+        mStatusView.showContent();
+    }
+
+    @Override
+    public void loadError(String msg) {
+        mStatusView.showEmpty(msg);
     }
 }

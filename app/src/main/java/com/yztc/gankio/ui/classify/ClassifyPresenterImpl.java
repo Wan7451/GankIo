@@ -41,7 +41,7 @@ public class ClassifyPresenterImpl implements ClassifyConstraint.IClassifyPresen
 
             @Override
             public void onError(String msg) {
-
+                view.loadError(msg);
             }
         });
     }

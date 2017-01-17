@@ -1,37 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:textColor="@color/text_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/classify_title" />
+    <data>
+
+        <variable
+            name="classify"
+            type="com.yztc.gankio.ui.classify.ClassifyBean" />
+    </data>
+
 
     <LinearLayout
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="10dp">
 
         <TextView
-            android:textColor="@color/text_content"
+            android:id="@+id/classify_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/classify_author" />
+            android:text="@{classify.desc}"
+            android:textColor="@color/text_title" />
 
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:gravity="right"
             android:layout_height="wrap_content"
-            android:id="@+id/classify_time" />
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/classify_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{classify.who}"
+                android:textColor="@color/text_content" />
+
+
+            <TextView
+                android:id="@+id/classify_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                app:time="@{classify.publishedAt}" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+
+</layout>

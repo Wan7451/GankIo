@@ -5,9 +5,9 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewStub;
 
 import com.yztc.gankio.R;
+import com.yztc.gankio.widget.StatusViewLayout;
 
 import butterknife.BindView;
 
@@ -18,13 +18,15 @@ import butterknife.BindView;
 public abstract class BaseListFragment extends LazyFragment {
 
     @BindView(R.id.recycleView)
-    RecyclerView mRecycleView;
+    protected RecyclerView mRecycleView;
     @BindView(R.id.swipeRefreshView)
-    SwipeRefreshLayout mSwipeRefreshLayout;
-    @BindView(R.id.emptyView)
-    ViewStub emptyView;
+    protected SwipeRefreshLayout mSwipeRefreshLayout;
+    @BindView(R.id.statusView)
+    protected StatusViewLayout mStatusView;
+
 
     protected RecyclerView.Adapter mAdapter;
+
 
     /**
      * 设置显示的Adapter
@@ -119,4 +121,5 @@ public abstract class BaseListFragment extends LazyFragment {
     protected void onInitData() {
 
     }
+
 }

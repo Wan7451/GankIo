@@ -5,6 +5,8 @@
     <color name="colorAccent">#FF4081</color>
 
 
+    <color name="status_view_text_color">#b6b3b3</color>
+
     <color name="red">#E41B46</color>
     <color name="text_title">#343434</color>
     <color name="text_content">#404040</color>

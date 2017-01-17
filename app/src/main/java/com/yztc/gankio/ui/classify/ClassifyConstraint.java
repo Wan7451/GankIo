@@ -18,6 +18,8 @@ public class ClassifyConstraint {
         void onPush(List<ClassifyBean> data);//上拉加载
 
         void loadFinish();
+
+        void loadError(String msg);
     }
 
     public interface IClassifyPresenter {

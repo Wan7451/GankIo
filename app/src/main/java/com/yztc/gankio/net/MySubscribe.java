@@ -2,8 +2,6 @@ package com.yztc.gankio.net;
 
 import android.content.Context;
 
-import com.yztc.gankio.dialog.LoadingDialog;
-
 import rx.Subscriber;
 
 /**
@@ -18,13 +16,13 @@ public abstract class MySubscribe<T> extends Subscriber<T> {
     }
 
     private Context context;
-    private LoadingDialog dialog;
+//    private LoadingDialog dialog;
 
     @Override
     public void onStart() {
         super.onStart();
-        dialog = new LoadingDialog(context);
-        dialog.show();
+//        dialog = new LoadingDialog(context);
+//        dialog.show();
     }
 
     @Override
@@ -46,7 +44,7 @@ public abstract class MySubscribe<T> extends Subscriber<T> {
 
     @Override
     public void onNext(T t) {
-        dialog.dismiss();
+//        dialog.dismiss();
     }
 
     //统一处理异常  出现错误直接调用 自定义的 onError
