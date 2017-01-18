@@ -21,6 +21,13 @@ public abstract class MySubscribe<T> extends Subscriber<T> {
     @Override
     public void onStart() {
         super.onStart();
+
+        if (!ConnectiveUtils.isConnected(context)) {
+            onError(new ExceptionHandle.ResponeThrowable(
+                    new Throwable("网络无连接"), 100));
+        }
+
+
 //        dialog = new LoadingDialog(context);
 //        dialog.show();
     }
