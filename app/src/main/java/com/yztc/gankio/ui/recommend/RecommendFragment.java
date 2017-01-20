@@ -2,15 +2,13 @@ package com.yztc.gankio.ui.recommend;
 
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.yztc.gankio.R;
+import com.yztc.gankio.base.BaseFragment;
 import com.yztc.gankio.ui.recommend.mvp.RecommendConstraint;
 import com.yztc.gankio.ui.recommend.mvp.RecommendPresenterImpl;
 import com.yztc.gankio.widget.RotateTransformer;
@@ -20,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class RecommendFragment extends Fragment implements RecommendConstraint.RecommendView {
+public class RecommendFragment extends BaseFragment implements RecommendConstraint.RecommendView {
 
 
     private TabLayout tabLayout;
@@ -32,26 +30,26 @@ public class RecommendFragment extends Fragment implements RecommendConstraint.R
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_recommend, container, false);
+    protected int getLayoutResource() {
+        return R.layout.fragment_recommend;
     }
 
     @Override
-    public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
+    protected void onInitView(View view, Bundle savedInstanceState) {
         tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
         viewPager = (ViewPager) view.findViewById(R.id.viewPager);
         statusView = (StatusViewLayout) view.findViewById(R.id.statusView);
 
         viewPager.setPageTransformer(true, new RotateTransformer());
+    }
 
+    @Override
+    protected void onInitData() {
         RecommendConstraint.RecommendPresenter presenter =
                 new RecommendPresenterImpl(this);
         presenter.loadTab(5);
-
     }
+
 
     @Override
     public void showLoading() {
@@ -81,6 +79,7 @@ public class RecommendFragment extends Fragment implements RecommendConstraint.R
                 getChildFragmentManager(), fragments);
 
         viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(fragments.size());
         tabLayout.setupWithViewPager(viewPager);
     }
 }

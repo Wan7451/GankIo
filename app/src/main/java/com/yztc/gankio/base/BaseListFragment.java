@@ -53,6 +53,14 @@ public abstract class BaseListFragment extends LazyFragment {
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
+    protected boolean enableRefresh() {
+        return true;
+    }
+
+    protected boolean isAddItemDecoration() {
+        return true;
+    }
+
     @Override
     protected void onInitView(View v) {
         mSwipeRefreshLayout.setColorSchemeColors(
@@ -62,13 +70,22 @@ public abstract class BaseListFragment extends LazyFragment {
                 getResources().getColor(android.R.color.holo_blue_light)
         );
 
-        DividerItemDecoration decoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
-        mRecycleView.addItemDecoration(decoration);
+        if (isAddItemDecoration()) {
+            DividerItemDecoration decoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+            mRecycleView.addItemDecoration(decoration);
+        }
         mRecycleView.setHasFixedSize(true);
         mRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter = getAdapter();
         if (mAdapter != null)
             mRecycleView.setAdapter(mAdapter);
+
+        if (!enableRefresh()) {
+            mSwipeRefreshLayout.setEnabled(false);
+            loadData();
+            return;
+        }
+
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -104,8 +121,6 @@ public abstract class BaseListFragment extends LazyFragment {
                         lastVisibleItem = last;
                     }
                 }
-
-
             }
         });
         mSwipeRefreshLayout.setRefreshing(true);
@@ -120,6 +135,19 @@ public abstract class BaseListFragment extends LazyFragment {
     @Override
     protected void onInitData() {
 
+    }
+
+
+    public void showLoading() {
+        mStatusView.showLoading();
+    }
+
+    public void showContent() {
+        mStatusView.showContent();
+    }
+
+    public void showError(String msg) {
+        mStatusView.showError();
     }
 
 }

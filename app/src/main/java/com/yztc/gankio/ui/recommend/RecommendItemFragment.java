@@ -2,29 +2,20 @@ package com.yztc.gankio.ui.recommend;
 
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import com.yztc.gankio.R;
+import com.yztc.gankio.base.BaseListFragment;
 import com.yztc.gankio.ui.recommend.mvp.RecommendConstraint;
 import com.yztc.gankio.ui.recommend.mvp.RecommendPresenterImpl;
-import com.yztc.gankio.widget.StatusViewLayout;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 
-public class RecommendItemFragment extends Fragment implements RecommendConstraint.RecommendView {
+public class RecommendItemFragment extends BaseListFragment implements RecommendConstraint.RecommendView {
 
-    private RecyclerView recyclerView;
     private ArrayList<ItemType> data = new ArrayList<>();
-    private RecommmandAdapter adapter;
-    private StatusViewLayout statusView;
+
 
     public RecommendItemFragment() {
     }
@@ -40,50 +31,59 @@ public class RecommendItemFragment extends Fragment implements RecommendConstrai
     }
 
 
+
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_blank, container, false);
+    public void showLoading() {
+        super.showLoading();
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        Bundle args = getArguments();
-        final String title = args.getString("title");
-        //2017-01-16T14:12:00.424Z
-        String date = args.getString("date");
+    public void showContent() {
+        super.showContent();
+    }
 
-        statusView = (StatusViewLayout) view.findViewById(R.id.statusView);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycleView);
-        adapter = new RecommmandAdapter(getContext(), data);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    @Override
+    public void showError(String msg) {
+        super.showError(msg);
+    }
+
+    @Override
+    public void fillData(Object reeult) {
+        data.addAll((Collection<? extends ItemType>) reeult);
+        loadfinish();
+    }
+
+    @Override
+    protected RecyclerView.Adapter getAdapter() {
+        return new RecommmandAdapter(getContext(), data);
+    }
+
+    @Override
+    protected boolean enableRefresh() {
+        return false;
+    }
+
+    @Override
+    protected boolean isAddItemDecoration() {
+        return false;
+    }
+
+    @Override
+    protected void loadData() {
+
+        Bundle args = getArguments();
+        String title = args.getString("title");
+        String date = args.getString("date");
 
         RecommendConstraint.RecommendPresenter presenter = new
                 RecommendPresenterImpl(this);
         presenter.loadContent(date, title);
     }
 
-
     @Override
-    public void showLoading() {
-        statusView.showLoading();
-    }
+    protected void addData() {
 
-    @Override
-    public void showContent() {
-        statusView.showContent();
-    }
-
-    @Override
-    public void showError(String msg) {
-        statusView.showError(msg);
-    }
-
-    @Override
-    public void fillData(Object reeult) {
-        data.addAll((Collection<? extends ItemType>) reeult);
-        adapter.notifyDataSetChanged();
     }
 }
