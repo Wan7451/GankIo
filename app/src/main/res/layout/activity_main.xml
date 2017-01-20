@@ -7,7 +7,7 @@
     tools:context="com.yztc.gankio.MainActivity">
 
     <fragment
-        class="com.yztc.gankio.ui.classify.ClassifyFragment"
+        class="com.yztc.gankio.ui.recommend.RecommendFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/aaaa" />
