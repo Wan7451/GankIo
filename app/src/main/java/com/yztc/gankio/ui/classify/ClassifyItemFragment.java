@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.yztc.gankio.base.BaseListFragment;
+import com.yztc.gankio.ui.classify.mvp.ClassifyConstraint;
+import com.yztc.gankio.ui.classify.mvp.ClassifyPresenterImpl;
 
 import java.util.ArrayList;
 import java.util.List;

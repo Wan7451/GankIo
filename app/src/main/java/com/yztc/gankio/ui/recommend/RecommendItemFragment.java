@@ -30,10 +30,6 @@ public class RecommendItemFragment extends BaseListFragment implements Recommend
         return fragment;
     }
 
-
-
-
-
     @Override
     public void showLoading() {
         super.showLoading();

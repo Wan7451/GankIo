@@ -1,23 +1,27 @@
 <com.yztc.gankio.widget.StatusViewLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/statusView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:id="@+id/statusView"
     tools:context="com.yztc.gankio.ui.recommend.RecommendFragment">
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabLayout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        app:tabIndicatorHeight="1dp"
-        app:tabIndicatorColor="@color/colorAccent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_marginTop="1dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:tabIndicatorColor="@color/colorAccent"
+            app:tabIndicatorHeight="1dp" />
 
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 </com.yztc.gankio.widget.StatusViewLayout>

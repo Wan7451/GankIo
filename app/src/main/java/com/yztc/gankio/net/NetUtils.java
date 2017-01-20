@@ -43,7 +43,7 @@ public class NetUtils {
                 Log.i(TAG, message);
             }
         });
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
 
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(interceptor)

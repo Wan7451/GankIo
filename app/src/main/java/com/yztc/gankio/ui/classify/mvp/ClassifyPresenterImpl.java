@@ -1,8 +1,9 @@
-package com.yztc.gankio.ui.classify;
+package com.yztc.gankio.ui.classify.mvp;
 
 import android.content.Context;
 
 import com.yztc.gankio.net.NetResponse;
+import com.yztc.gankio.ui.classify.ClassifyBean;
 
 import java.util.List;
 
