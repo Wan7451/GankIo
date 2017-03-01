@@ -11,7 +11,6 @@ import com.yztc.gankio.R;
 import com.yztc.gankio.base.BaseFragment;
 import com.yztc.gankio.ui.recommend.mvp.RecommendConstraint;
 import com.yztc.gankio.ui.recommend.mvp.RecommendPresenterImpl;
-import com.yztc.gankio.ui.recommend.web.WebFragment;
 import com.yztc.gankio.widget.RotateTransformer;
 import com.yztc.gankio.widget.StatusViewLayout;
 
@@ -73,9 +72,9 @@ public class RecommendFragment extends BaseFragment implements RecommendConstrai
         ArrayList<Fragment> fragments = new ArrayList<Fragment>();
         for (int i = 0; i < tabBeans.size(); i++) {
             RecommendTabBean tabBean = tabBeans.get(i);
-//            fragments.add(RecommendItemFragment
-//                    .getInstance(tabBean.getTitle(), tabBean.getPublishedAt()));
-            fragments.add(WebFragment.getInstance(tabBean.getTitle(), tabBean.getContent()));
+            fragments.add(RecommendItemFragment
+                    .getInstance(tabBean.getTitle(), tabBean.getPublishedAt()));
+//            fragments.add(WebFragment.getInstance(tabBean.getTitle(), tabBean.getContent()));
         }
         RecommendFragmentAdapter adapter = new RecommendFragmentAdapter(
                 getChildFragmentManager(), fragments);
